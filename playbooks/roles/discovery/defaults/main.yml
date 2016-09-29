@@ -101,7 +101,26 @@ DISCOVERY_MEDIA_STORAGE_BACKEND:
   MEDIA_URL: '{{ DISCOVERY_MEDIA_URL }}'
   
 DISCOVERY_STATICFILES_STORAGE: 'django.contrib.staticfiles.storage.StaticFilesStorage'
-  
+
+
+# You can set different email backends with django:
+# https://docs.djangoproject.com/en/1.9/topics/email/#email-backends
+# Eample config for smtp backend
+# DISCOVERY_EMAIL_CONFIG:
+#   EMAIL_BACKEND: 'django.core.mail.backends.smtp.EmailBackend'
+#   EMAIL_HOST: 'localhost'
+#   EMAIL_PORT: 25
+#   EMAIL_USE_TLS: False
+#   EMAIL_HOST_USER: ''
+#   EMAIL_HOST_PASSWORD: ''
+
+DISCOVERY_EMAIL_CONFIG:
+  EMAIL_BACKEND: 'django_ses.SESBackend'
+  AWS_ACCESS_KEY_ID: 'SET-ME-PLEASE'
+  AWS_SECRET_ACCESS_KEY: 'SET-ME-PLEASE'
+  AWS_SES_REGION_NAME: 'SET-ME-PLEASE'
+  AWS_SES_REGION_ENDPOINT: 'SET-ME-PLEASE'
+
 DISCOVERY_EXTRA_APPS: []
 
 DISCOVERY_SERVICE_CONFIG:
@@ -145,6 +164,7 @@ DISCOVERY_SERVICE_CONFIG:
 
   MEDIA_STORAGE_BACKEND: '{{ DISCOVERY_MEDIA_STORAGE_BACKEND }}'
   STATICFILES_STORAGE: '{{ DISCOVERY_STATICFILES_STORAGE }}'
+  EMAIL_CONFIG: '{{ DISCOVERY_EMAIL_CONFIG }}'
 
 DISCOVERY_REPOS:
   - PROTOCOL: "{{ COMMON_GIT_PROTOCOL }}"
